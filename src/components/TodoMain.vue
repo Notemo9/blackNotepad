@@ -29,12 +29,12 @@ nextTick(()=>{
   })
 }
 const name=ref('')
-const isName=(e)=>{
+const isName=(e,names)=>{
+  name.value=names
   name.value=e.target.value
 }
 const inputs=ref(null)
-const  submit=  (id,names)=>{
-  name.value=names
+const  submit=  (id)=>{
 emit('updateName',{id:id,name:name.value})
 }
 </script>
@@ -50,7 +50,7 @@ emit('updateName',{id:id,name:name.value})
           <label @dblclick="Isshow(item.isShow,item.id,i,item.checked)">{{item.name}}</label>
           <button class="destroy" @click="del(item.id)"></button>
         </div>
-        <input class="edit" ref="inputs" :style="{display:item.isShow?'block':'none'}" :value="item.name" @input="isName"  @keydown.enter="submit(item.id,item.name)" @blur="submit(item.id,item.name)"/>
+        <input class="edit" ref="inputs" :style="{display:item.isShow?'block':'none'}" :value="item.name" @input="isName($event,item.name)"  @keydown.enter="submit(item.id)" @blur="submit(item.id)"/>
       </li>
     </ul>
   </section>

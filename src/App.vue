@@ -7,7 +7,7 @@ const list =ref(JSON.parse(localStorage.getItem('list'))||[])
 const fakeList=ref(list.value)
 const pushList=(e)=>{
   console.log(e);
-list.value.push(e)
+list.value.unshift(e)
 }
 // 删除
 const del=(e)=>{
